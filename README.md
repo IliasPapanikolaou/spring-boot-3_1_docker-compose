@@ -1,0 +1,11 @@
+### Available movie genres
+- animation
+- action-adventure
+- classic
+- comedy
+- drama
+- horror
+- family
+- mystery
+- scifi-fantasy
+- western

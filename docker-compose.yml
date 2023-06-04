@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: book
+    ports:
+      - "5432:5432"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
